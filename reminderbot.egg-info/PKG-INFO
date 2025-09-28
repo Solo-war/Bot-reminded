@@ -1,0 +1,78 @@
+Metadata-Version: 2.4
+Name: reminderbot
+Version: 0.1.0
+Summary: Mercurple reminder bot built with aiogram
+Author: Mercurple Team
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: aiogram>=3.4
+Requires-Dist: APScheduler>=3.10
+Requires-Dist: SQLAlchemy>=2.0
+Requires-Dist: alembic>=1.13
+Requires-Dist: pydantic>=2.4
+Requires-Dist: pydantic-settings>=2.2
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: fastapi>=0.110
+Requires-Dist: uvicorn[standard]>=0.29
+Requires-Dist: babel>=2.12
+Requires-Dist: python-i18n>=0.3
+Requires-Dist: tzdata>=2024.1
+Requires-Dist: httpx>=0.27
+Requires-Dist: PyYAML>=6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.23; extra == "dev"
+Requires-Dist: pytest-mock>=3.12; extra == "dev"
+Requires-Dist: coverage>=7.4; extra == "dev"
+Dynamic: requires-python
+
+﻿# Mercurple Reminderbot
+
+Mercurple — Telegram-бот, который помогает создавать, управлять и доставлять напоминания с поддержкой повторов, тихих часов и админ-функций. Проект построен на Python 3.11, aiogram 3 и APScheduler.
+
+## Архитектура
+- `bot.py` — точка входа, инициализация логирования, БД, планировщика и запуск polling.
+- `reminderbot/app` — работа с Telegram API: роутеры, FSM-диалоги, клавиатуры, middleware.
+- `reminderbot/domain` — бизнес-логика и DTO, сервисы пользователей и напоминаний.
+- `reminderbot/infrastructure` — SQLAlchemy ORM, репозитории, контейнеры зависимостей, планировщик, интеграции.
+- `reminderbot/presentation` — локализация и шаблоны сообщений.
+- `reminderbot/web` — опциональная FastAPI-панель для мониторинга.
+- `alembic` — настройка миграций.
+- `tests` — pytest-покрытие ключевых сценариев домена.
+
+## Запуск локально
+1. Скопируйте `.env.example` в `.env` и заполните `BOT_TOKEN` и другие переменные.
+2. Установите зависимости:
+   ```bash
+   python -m venv .venv
+   .venv/Scripts/activate  # Windows
+   pip install -e .[dev]
+   ```
+3. Примените миграции (опционально):
+   ```bash
+   alembic upgrade head
+   ```
+4. Запустите бота:
+   ```bash
+   python bot.py
+   ```
+
+## Docker
+- Сборка и запуск:
+  ```bash
+  docker compose up --build
+  ```
+- Сервис `bot` запускает Telegram-бота, `web` — FastAPI-панель на `http://localhost:8000`.
+
+## Тестирование
+- Запуск pytest:
+  ```bash
+  pytest
+  ```
+- Тесты покрывают расчёт повторов и логику тихих часов.
+
+## Планировщик и уведомления
+- APScheduler сохраняет задания в SQLite (`data/scheduler.db`).
+- Напоминания пересчитываются при CRUD-операциях и перезапуске за счёт `ReminderScheduler.resync()`.
+- Тихие часы определяются на уровне пользователя и учитываются при отправке.
+

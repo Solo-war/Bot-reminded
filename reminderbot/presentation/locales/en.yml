@@ -1,0 +1,71 @@
+﻿common:
+  welcome: "Hello! I'm Mercurple, your reminder bot."
+  error: "Something went wrong. Please try again or contact support."
+  use_commands: "Use commands or the menu to manage reminders."
+help:
+  title: "Available commands:"
+commands:
+  start: "start and show main menu"
+  help: "show this help"
+  create: "create a reminder with date & time picker"
+  reminders: "list your active reminders"
+  language: "choose interface language"
+buttons:
+  main:
+    create: "➕ Create"
+    list: "📋 List"
+    language: "🌐 Languages"
+    help: "🆘 Help"
+  repeat:
+    none: "No repeat"
+    daily: "Daily"
+    weekly: "Weekly"
+    monthly: "Monthly"
+    custom: "Custom interval"
+  actions:
+    edit: "✏️ Edit"
+    snooze: "⏰ Snooze"
+    close: "✅ Close"
+    delete: "🗑 Delete"
+calendar:
+  weekdays: ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
+create:
+  title_prompt: "Enter a reminder title:"
+  date_prompt: "Pick a date:"
+  hour_prompt: "Pick an hour:"
+  minute_prompt: "Pick minutes:"
+  repeat_prompt: "Choose repeat interval:"
+snooze:
+  prompt: "How many minutes to snooze? (e.g., 15)"
+  invalid_number: "That doesn't look like a number of minutes."
+edit:
+  not_implemented: "Editing is not implemented yet."
+reminder:
+  created: "Reminder \"{title}\" scheduled for {time}."
+  updated: "Reminder updated. Next run at {time}."
+  deleted: "Reminder removed."
+  notify: "🔔 Reminder: {title}\n{description}\n⏰ {time}"
+  list_title: "Your active reminders:"
+  list_empty: "No active reminders yet."
+  list_item: "#{id}: {title} — {status} ({time})"
+  status:
+    active: "active"
+    snoozed: "snoozed"
+    closed: "closed"
+  snoozed: "Reminder snoozed for {minutes} minutes."
+  closed: "Reminder marked as closed."
+settings:
+  timezone_updated: "Timezone updated to {timezone}."
+  quiet_updated: "Quiet hours: {start} – {end}."
+  quiet_disabled: "Quiet hours disabled."
+  language_choose: "Choose interface language:"
+  language_updated: "Language switched."
+admin:
+  access_denied: "You are not an administrator."
+  user_list_title: "Active users:"
+  user_line: "• {user_id} @{username} ({status})"
+  log_entry: "#{reminder_id} — {status} at {time} {error}"
+web:
+  title: "Mercurple admin panel"
+  users: "Users"
+  reminders: "Reminder stats"
