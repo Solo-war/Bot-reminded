@@ -57,3 +57,7 @@ Thumbs.db
 
 # Backups
 *.bak
+ 
+# Local data and build artefacts
+data/
+reminderbot.egg-info/
