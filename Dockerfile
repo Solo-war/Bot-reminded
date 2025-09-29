@@ -26,6 +26,8 @@ COPY alembic ./alembic
 COPY .env.example ./.env.example
 
 RUN useradd --create-home appuser
+# Ensure data dir exists and is owned by appuser (copied into named volume on first run)
+RUN mkdir -p /app/data && chown -R appuser:appuser /app
 USER appuser
 
 CMD ["python", "bot.py"]

@@ -4,16 +4,19 @@ services:
     build: .
     env_file: .env
     volumes:
-      - ./data:/app/data
+      - bot_data:/app/data
     restart: unless-stopped
     command: ["python", "bot.py"]
   web:
     build: .
     env_file: .env
     volumes:
-      - ./data:/app/data
+      - bot_data:/app/data
     ports:
       - "8000:8000"
     command: ["uvicorn", "reminderbot.web:app", "--host", "0.0.0.0", "--port", "8000"]
     depends_on:
       - bot
+
+volumes:
+  bot_data:

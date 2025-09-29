@@ -7,11 +7,7 @@ from typing import List
 
 from pydantic import Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from dotenv import load_dotenv
-print("ENV path:", os.path.join(os.path.dirname(__file__), ".env"))
-print("Exists:", os.path.exists(os.path.join(os.path.dirname(__file__), ".env")))
-
-load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))
+ 
 
 class Settings(BaseSettings):
     """Настройки приложения, читаются из .env при наличии."""

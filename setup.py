@@ -11,6 +11,7 @@ setup(
         "aiogram>=3.4",
         "APScheduler>=3.10",
         "SQLAlchemy>=2.0",
+        "aiosqlite>=0.19",
         "alembic>=1.13",
         "pydantic>=2.4",
         "pydantic-settings>=2.2",

@@ -13,6 +13,7 @@ dependencies = [
     "aiogram>=3.4",
     "APScheduler>=3.10",
     "SQLAlchemy>=2.0",
+    "aiosqlite>=0.19",
     "alembic>=1.13",
     "pydantic>=2.4",
     "pydantic-settings>=2.2",
@@ -37,3 +38,12 @@ dev = [
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+
+# Explicit package discovery to avoid including alembic/tests as top-level packages
+[tool.setuptools.packages.find]
+include = ["reminderbot*"]
+exclude = ["alembic*", "tests*"]
+
+# Include non-Python locale files in the wheel
+[tool.setuptools.package-data]
+reminderbot = ["presentation/locales/*.yml"]
